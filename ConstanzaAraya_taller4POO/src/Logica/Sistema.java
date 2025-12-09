@@ -26,6 +26,11 @@ public class Sistema {
 	
     public static void leerUsuarios(String archivo) throws FileNotFoundException {
 		s = new Scanner(new File(archivo));
+		while(s.hasNextLine()) {
+			String[] parte = s.nextLine().split(";");
+			usuarios.add(UsuarioFactory.crearUsuario(parte));
+		
+		}
 	}
 
 	public static void leerRegistros(String string) {
