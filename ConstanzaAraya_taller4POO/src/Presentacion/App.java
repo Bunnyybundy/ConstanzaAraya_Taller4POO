@@ -20,37 +20,30 @@ public class App {
 	}
 
 	private static void leerUsuarios(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void leerRegistros(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void leerNotas(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void leerEstudiantes(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void leerCursos(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void leerCertificaciones(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void leerAsigCertificaciones(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
