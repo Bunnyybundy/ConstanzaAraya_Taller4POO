@@ -100,4 +100,8 @@ public class Sistema {
 			
 		}
 	}
+	
+	public static ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
 }
