@@ -3,7 +3,7 @@ package Dominio;
 import Patrones.visitable;
 import Patrones.visitor;
 
-public class Estudiante implements visitable {
+public class Estudiante extends Usuario implements visitable {
 	private String rut;
 	private String nombre;
 	private String carrera; 
@@ -11,6 +11,7 @@ public class Estudiante implements visitable {
 	private String contraseña;
 	
 	public Estudiante(String rut, String nombre, String carrera, String correoE, String contraseña) {
+		super(nombre,contraseña,"Estudiante");
 		this.rut = rut;
 		this.nombre = nombre;
 		this.carrera = carrera;

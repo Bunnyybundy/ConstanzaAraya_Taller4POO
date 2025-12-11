@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Dominio.*;
-import Dominio.Curso;
 import Patrones.*;
 
 
@@ -32,6 +31,7 @@ public class Sistema {
 		return instancia;
 	}
 	
+	
     public static void leerUsuarios(String archivo) throws FileNotFoundException {
 		s = new Scanner(new File(archivo));
 		while(s.hasNextLine()) {
@@ -39,6 +39,10 @@ public class Sistema {
 			usuarios.add(UsuarioFactory.crearUsuario(parte));
 		
 		}
+	}
+    public static Usuario login(String usuario, String contraseña) {
+		
+		return null;
 	}
 
 	public static void leerRegistros(String archivo) throws FileNotFoundException {
@@ -169,4 +173,6 @@ public class Sistema {
 	        c.accept(v);
 	    }
 	}
+
+	
 }

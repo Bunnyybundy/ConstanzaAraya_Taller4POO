@@ -10,7 +10,7 @@ public class App {
 	private static Scanner s;
 	
 	public static void main(String[] args) throws FileNotFoundException {
-	
+		new VentanaLogin().setVisible(true);
 		s = new Scanner(System.in);
 		Sistema sistema = Sistema.getInstancia();
 		
