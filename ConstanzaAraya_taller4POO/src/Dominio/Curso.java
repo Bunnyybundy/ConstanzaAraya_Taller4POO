@@ -1,8 +1,10 @@
 package Dominio;
 
 import java.util.List;
+import Visitors.visitable;
+import Visitors.visitor;
 
-public class Curso {
+public class Curso implements visitable {
 	private String nrc;
 	private String nombre;
 	private int semestre;
@@ -27,6 +29,10 @@ public class Curso {
 		return nombre;
 	}
 	
+   @Override
+    public void accept(visitor v) {
+        v.visit(this);
+    }
 	
 	
 }

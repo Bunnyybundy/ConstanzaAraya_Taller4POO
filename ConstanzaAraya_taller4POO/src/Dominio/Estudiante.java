@@ -1,6 +1,9 @@
 package Dominio;
 
-public class Estudiante {
+import Visitors.visitable;
+import Visitors.visitor;
+
+public class Estudiante implements visitable {
 	private String rut;
 	private String nombre;
 	private String carrera; 
@@ -54,6 +57,11 @@ public class Estudiante {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
+
+    @Override
+    public void accept(visitor v) {
+        v.visit(this);
+    }
 	
 	
 	
