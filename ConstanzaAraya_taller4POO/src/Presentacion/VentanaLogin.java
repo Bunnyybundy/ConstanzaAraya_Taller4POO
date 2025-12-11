@@ -39,6 +39,9 @@ public class VentanaLogin extends JFrame{
 		txtContraseña = new JPasswordField();
 		txtContraseña.setBounds(100,60,200,25);
 		add(txtContraseña);
+		btnLogin = new JButton("Ingresar");
+		btnLogin.setBounds(100,100,120,25);
+		add(btnLogin);
 		
 		btnLogin.addActionListener(new ActionListener() {
 
