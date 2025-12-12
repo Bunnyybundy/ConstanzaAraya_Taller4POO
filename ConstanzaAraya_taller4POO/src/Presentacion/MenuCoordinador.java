@@ -13,7 +13,6 @@ import Logica.Validar_CertiVisitor;
  * Permite gestionar certificaciones, visualizar métricas y analizar estudiantes.
  */
 public class MenuCoordinador extends JFrame {
-	private static final long serialVersionUID = 1L;
 	/**
      * Construye la ventana del menú coordinador con pestañas de gestión.
      */

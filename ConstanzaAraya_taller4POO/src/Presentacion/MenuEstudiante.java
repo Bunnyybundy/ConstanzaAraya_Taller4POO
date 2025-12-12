@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import Dominio.*;
 import Logica.Sistema;
+import Logica.Validar_CertiVisitor;
+
 import java.util.List;
 
 /**
@@ -80,7 +82,7 @@ public class MenuEstudiante extends JFrame {
         List<Curso> cursos = Sistema.getCursos();
         for (Curso c : cursos) {
             JButton btnCurso = new JButton(c.getNombre());
-            Nota nota = Sistema.buscarNota(estudiante.getRut(), c.getCodigo());
+            Nota nota = Sistema.buscarNota(estudiante.getRut(), c.getNrc());
 
             if (nota != null) {
                 if ("Aprobado".equalsIgnoreCase(nota.getEstado())) {
@@ -120,11 +122,11 @@ public class MenuEstudiante extends JFrame {
             String seleccion = lista.getSelectedValue();
             if (seleccion != null) {
                 String nombreCert = seleccion.split(" - ")[0];
-                Certificacion cert = Sistema.BuscarCertificacionPorNombre(nombreCert);
+                Certificacion cert = Sistema.buscarCertificacionPorNombre(nombreCert);
 
                 // Validar prerrequisitos (ejemplo simple)
                 if (Sistema.verificarPrerrequisitos(estudiante, cert)) {
-                    RegistroCertificacion reg = new RegistroCertificacion(estudiante.getRut(), cert.getId(), "Inscrito", 0);
+                    RegistroCertificacion reg = new RegistroCertificacion(estudiante.getRut(), cert.getId(), "Inscrito", nombreCert, 0);
                     Sistema.getRegistros().add(reg);
                     Sistema.guardarRegistros("registros.txt");
                     JOptionPane.showMessageDialog(this, "Inscripción realizada y guardada en archivo.");
@@ -163,7 +165,7 @@ public class MenuEstudiante extends JFrame {
                     Sistema.guardarRegistros("registros.txt");
 
                     // Aplicar Visitor (ejemplo)
-                    Validar_CertiVisitor visitor = new Validar_CertiVisitor();
+                    Validar_CertiVisitor visitor = new Validar_CertiVisitor(estudiante);
                     cert.accept(visitor);
                 });
                 panel.add(btnActualizar);

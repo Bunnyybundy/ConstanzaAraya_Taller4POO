@@ -420,4 +420,42 @@ public class Sistema {
 	        e.printStackTrace();
 	    }
 	}
+	/**
+	 * Verifica si un estudiante cumple los prerrequisitos de una certificación.
+	 * 
+	 * Se revisan los cursos requeridos por la certificación y se valida que el estudiante
+	 * tenga una nota aprobada en cada uno de ellos.
+	 *
+	 * @param estudiante estudiante a validar
+	 * @param cert certificación que se desea inscribir
+	 * @return true si cumple todos los prerrequisitos, false en caso contrario
+	 */
+	public static boolean verificarPrerrequisitos(Estudiante estudiante, Certificacion cert) {
+	    // Obtener los cursos requeridos por la certificación
+	    List<Curso> cursosRequeridos = getCursosRequeridos(cert.getId());
+	    for (Curso c : cursosRequeridos) {
+	        Nota nota = buscarNota(estudiante.getRut(), c.getNrc());
+	        if (nota == null || !"Aprobado".equalsIgnoreCase(nota.getEstado())) {
+	            // Si falta la nota o no está aprobado, no cumple
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
+	/**
+	 * Busca la nota de un estudiante en un curso específico.
+	 *
+	 * @param rut rut del estudiante
+	 * @param nrc código del curso (NRC)
+	 * @return Nota encontrada o null si no existe
+	 */
+	public static Nota buscarNota(String rut, String nrc) {
+	    for (Nota n : nota) {
+	        if (n.getRut().equals(rut) && n.getCodigoAsignatura().equals(nrc)) {
+	            return n;
+	        }
+	    }
+	    return null;
+	}
 }
