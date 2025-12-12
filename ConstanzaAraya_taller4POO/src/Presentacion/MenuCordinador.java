@@ -1,64 +1,64 @@
 package Presentacion;
 
+import javax.swing.*;
+import java.awt.*;
 import Logica.Sistema;
-import Dominio.Certificacion;
-import Dominio.Estudiante;
-import java.util.Scanner;
-import Patrones.*;
+import Dominio.*;
 
-public class MenuCordinador {
-    private static Scanner s = new Scanner(System.in);
+public class MenuCordinador extends JFrame {
+    public MenuCordinador() {
+        setTitle("Menú Coordinador");
+        setSize(800,500);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-    public static void mostrar() {
-        int opcion;
-        do {
-            System.out.println("\n=== Menú Coordinador ===");
-            System.out.println("1. Listar certificaciones");
-            System.out.println("2. Listar estudiantes");
-            System.out.println("3. Buscar estudiante por RUT");
-            System.out.println("4. Validar certificaciones de un estudiante (Visitor)");
-            System.out.println("5. Salir");
-            System.out.print("Seleccione opción: ");
-            opcion = s.nextInt();
-            s.nextLine(); // limpiar buffer
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Certificaciones", crearPanelCertificaciones());
+        tabs.addTab("Estadísticas", crearPanelEstadisticas());
+        tabs.addTab("Estudiantes", crearPanelEstudiantes());
 
-            switch (opcion) {
-                case 1:
-                    for (Certificacion c : Sistema.getCertificaciones()) {
-                        System.out.println(c.getId() + " - " + c.getNombre());
-                    }
-                    break;
+        add(tabs);
+    }
 
-                case 2:
-                    for (Estudiante e : Sistema.getEstudiantes()) {
-                        System.out.println(e.getRut() + " - " + e.getNombre() + " (" + e.getCarrera() + ")");
-                    }
-                    break;
+    private JPanel crearPanelCertificaciones() {
+        JPanel panel = new JPanel(new BorderLayout());
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+        for (Certificacion cert : Sistema.getCertificaciones()) {
+            modelo.addElement(cert.getNombre());
+        }
+        JList<String> lista = new JList<>(modelo);
+        panel.add(new JScrollPane(lista), BorderLayout.CENTER);
+        JButton btnModificar = new JButton("Modificar Certificación");
+        panel.add(btnModificar, BorderLayout.SOUTH);
+        return panel;
+    }
 
-                case 3:
-                    System.out.print("Ingrese RUT: ");
-                    String rut = s.nextLine();
-                    Estudiante est = Sistema.buscarEstudiantePorRut(rut);
-                    if (est != null) {
-                        System.out.println("Encontrado: " + est.getNombre() + " - " + est.getCarrera());
-                    } else {
-                        System.out.println("No existe estudiante con ese RUT.");
-                    }
-                    break;
+    private JPanel crearPanelEstadisticas() {
+        JPanel panel = new JPanel(new GridLayout(0,1));
+        panel.add(new JLabel("Total certificaciones: " + Sistema.getCertificaciones().size()));
+        panel.add(new JLabel("Total estudiantes: " + Sistema.getEstudiantes().size()));
+        return panel;
+    }
 
-                case 4:
-                    System.out.print("Ingrese RUT del estudiante: ");
-                    String rutVisitor = s.nextLine();
-                    Estudiante estudiante = Sistema.buscarEstudiantePorRut(rutVisitor);
+    private JPanel crearPanelEstudiantes() {
+        JPanel panel = new JPanel(new BorderLayout());
+        JTextField txtRut = new JTextField();
+        JButton btnBuscar = new JButton("Buscar Estudiante");
+        JTextArea resultado = new JTextArea();
+        resultado.setEditable(false);
 
-                    if (estudiante != null) {
-                        visitor v = new Validar_CertiVisitor(estudiante);
-                        Sistema.aplicarVisitorCertificaciones(v); 
-                    } else {
-                        System.out.println("No existe estudiante con ese RUT.");
-                    }
-                    break;
+        btnBuscar.addActionListener(e -> {
+            String rut = txtRut.getText();
+            Estudiante est = Sistema.buscarEstudiantePorRut(rut);
+            if (est != null) {
+                resultado.setText("Nombre: " + est.getNombre() + "\nCarrera: " + est.getCarrera());
+            } else {
+                resultado.setText("Estudiante no encontrado.");
             }
-        } while (opcion != 5);
+        });
+
+        panel.add(txtRut, BorderLayout.NORTH);
+        panel.add(btnBuscar, BorderLayout.CENTER);
+        panel.add(new JScrollPane(resultado), BorderLayout.SOUTH);
+        return panel;
     }
 }
