@@ -156,6 +156,14 @@ public class Sistema {
 		return certificaciones;
 		
 	}
+	
+	public static ArrayList<Curso> getCursos(){
+		return cursos;
+		
+	}
+	
+	
+	
 	public static Usuario buscarUsuarioPorNombre(String nombre) {
 		for(Usuario u : usuarios) {
 			if(u.getNombre().equals(nombre)) {

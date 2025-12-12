@@ -53,7 +53,7 @@ public class MenuCordinador {
 
                     if (estudiante != null) {
                         visitor v = new Validar_CertiVisitor(estudiante);
-                        Sistema.aplicarVisitorCertificaciones(v); // aquí se usa el Visitor
+                        Sistema.aplicarVisitorCertificaciones(v); 
                     } else {
                         System.out.println("No existe estudiante con ese RUT.");
                     }
