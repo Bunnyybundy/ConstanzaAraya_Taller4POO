@@ -46,11 +46,11 @@ public class VentanaLogin extends JFrame{
 				Usuario u = Sistema.login(usuario, contraseña);
 				
 				if(u instanceof Administrador) {
-					new VentanaAdmin().setVisible(true);
+					new MenuAdmin().setVisible(true);
 				}else if(u instanceof Coordinador) {
-					new VentanaCoordinador().setVisible(true);
+					new MenuCoordinador().setVisible(true);
 				}else if(u instanceof Estudiante) {
-					new VentanaEstudiante((Estudiante) u).setVisible(true);
+					new MenuEstudiante((Estudiante) u).setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "Credenciales invalidas");
 				}

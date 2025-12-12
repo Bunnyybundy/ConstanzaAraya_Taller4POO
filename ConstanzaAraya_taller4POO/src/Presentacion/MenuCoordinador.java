@@ -5,8 +5,8 @@ import java.awt.*;
 import Logica.Sistema;
 import Dominio.*;
 
-public class MenuCordinador extends JFrame {
-    public MenuCordinador() {
+public class MenuCoordinador extends JFrame {
+    public MenuCoordinador() {
         setTitle("Menú Coordinador");
         setSize(800,500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
