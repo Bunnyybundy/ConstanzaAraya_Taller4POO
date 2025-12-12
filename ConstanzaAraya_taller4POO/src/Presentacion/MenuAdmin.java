@@ -53,7 +53,6 @@ public class MenuAdmin extends JFrame {
         String nombre = JOptionPane.showInputDialog(this, "Nombre:");
         String pass = JOptionPane.showInputDialog(this, "Contraseña:");
         if (nombre == null || pass == null) return;
-
         if (rol.equalsIgnoreCase("Estudiante")) {
             String rut = JOptionPane.showInputDialog(this, "RUT:");
             String carrera = JOptionPane.showInputDialog(this, "Carrera:");
