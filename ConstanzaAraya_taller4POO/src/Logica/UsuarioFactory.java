@@ -31,10 +31,10 @@ public class UsuarioFactory {
 		
 		switch(rol) {
 		case "Admin":
-			return new Administrador(nombre, contraseña);
+			return new Administrador(nombre, contraseña,rol);
 		case "Coordinador":
 			String area = parte[3];
-			return new Coordinador(nombre, contraseña, area);
+			return new Coordinador(nombre, contraseña,rol, area);
 		case "Estudiante":
             String rut = parte[3];
             String carrera = parte[4];

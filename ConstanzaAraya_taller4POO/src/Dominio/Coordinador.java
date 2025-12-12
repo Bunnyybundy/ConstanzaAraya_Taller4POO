@@ -9,8 +9,9 @@ public class Coordinador extends Usuario {
      * @param nombre Nombre del coordinador
      * @param contraseña Contraseña del coordinador
      * @param area Área de especialización
+	 * @param area 
      */
-	public Coordinador(String nombre, String contraseña, String area) {
+	public Coordinador(String nombre, String contraseña, String rol, String area) {
 		super(nombre, contraseña, "Coordinador");
 		this.area = area;
 	}

@@ -76,7 +76,7 @@ public class MenuAdmin extends JFrame {
             Sistema.getUsuarios().add(eNuevo);
         } else if (rol.equalsIgnoreCase("Coordinador")) {
             String area = JOptionPane.showInputDialog(this, "Área:");
-            Coordinador cNuevo = new Coordinador(nombre, pass, area);
+            Coordinador cNuevo = new Coordinador(nombre, pass,rol, area);
             Sistema.getUsuarios().add(cNuevo);
         }
         Sistema.guardarEstudiantes("estudiantes.txt");
