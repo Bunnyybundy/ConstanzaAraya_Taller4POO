@@ -5,15 +5,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import Dominio.*;
-import Logica.Sistema;
-
+import Logica.*;
+/**
+ * Ventana de inicio de sesión del sistema.
+ * Permite ingresar usuario y contraseña para acceder
+ * al menú correspondiente según el rol.
+ */
 public class VentanaLogin extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField txtUsuario;
 	private JPasswordField txtContraseña;
 	private JButton btnLogin;
-	
+	/**
+     * Construye la ventana de login con campos de usuario y contraseña.
+     * Configura el botón de ingreso para validar credenciales.
+     */
 	public VentanaLogin() {
 		setTitle("Login Sistema");
 		setSize(350,200);

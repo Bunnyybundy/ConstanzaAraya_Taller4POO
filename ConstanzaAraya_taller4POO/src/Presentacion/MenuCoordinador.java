@@ -3,16 +3,19 @@ package Presentacion;
 import java.awt.BorderLayout;
 import java.util.List;
 import java.util.ArrayList;
-
 import javax.swing.*;
-
 import Dominio.*;
 import Logica.Sistema;
-import Patrones.Validar_CertiVisitor;
-
+import Logica.Validar_CertiVisitor;
+/**
+ * Ventana del menú coordinador.
+ * Permite gestionar certificaciones, visualizar métricas y analizar estudiantes.
+ */
 public class MenuCoordinador extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+	/**
+     * Construye la ventana del menú coordinador con pestañas de gestión.
+     */
     public MenuCoordinador() {
         setTitle("Menú Coordinador");
         setSize(800,500);
@@ -25,7 +28,11 @@ public class MenuCoordinador extends JFrame {
 
         add(tabs);
     }
-
+    /**
+     * Panel para gestionar certificaciones:
+     * permite modificar datos y generar certificados.
+     * @return panel de certificaciones
+     */
     private JPanel crearPanelCertificaciones() {
         JPanel panel = new JPanel(new BorderLayout());
         DefaultListModel<String> modelo = new DefaultListModel<>();
@@ -73,7 +80,11 @@ public class MenuCoordinador extends JFrame {
         panel.add(botones, BorderLayout.SOUTH);
         return panel;
     }
-
+    /**
+     * Panel de estadísticas:
+     * muestra inscripciones y asignaturas críticas con alta reprobación.
+     * @return panel de estadísticas
+     */
     private JPanel crearPanelEstadisticas() {
         JPanel panel = new JPanel(new BorderLayout());
      
@@ -100,7 +111,12 @@ public class MenuCoordinador extends JFrame {
         panel.add(new JScrollPane(area),BorderLayout.CENTER);
         return panel;
     }
-
+    /**
+     * Panel de gestión de estudiantes:
+     * permite buscar un estudiante por RUT y mostrar su perfil,
+     * notas y certificaciones inscritas.
+     * @return panel de estudiantes
+     */
     private JPanel crearPanelEstudiantes() {
         JPanel panel = new JPanel(new BorderLayout());
         

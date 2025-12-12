@@ -5,13 +5,19 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import Dominio.*;
 import Logica.Sistema;
-
+/**
+ * Ventana del menú administrador.
+ * Permite gestionar usuarios: crear, modificar, eliminar y restablecer contraseñas.
+ */
 public class MenuAdmin extends JFrame {
 	private static final long serialVersionUID = 1L;
 
     private JTable tablaUsuarios;
     private DefaultTableModel modelo;
-
+    /**
+     * Construye la ventana del menú administrador.
+     * Configura la tabla de usuarios y los botones de gestión.
+     */
     public MenuAdmin() {
         setTitle("Menú Administrador");
         setSize(800,500);
@@ -40,14 +46,18 @@ public class MenuAdmin extends JFrame {
         btnEliminar.addActionListener(e -> eliminarSeleccionado());
         btnReset.addActionListener(e -> restablecerSeleccionado());
     }
-
+    /**
+     * Carga los usuarios desde el sistema en la tabla.
+     */
     private void cargarUsuarios() {
         modelo.setRowCount(0);
         for (Usuario u : Sistema.getUsuarios()) {
             modelo.addRow(new Object[]{u.getNombre(), u.getRol()});
         }
     }
-
+    /**
+     * Crea un nuevo usuario (Estudiante o Coordinador) mediante diálogos.
+     */
     private void crearUsuario() {
         String rol = JOptionPane.showInputDialog(this, "Rol (Estudiante/Coordinador):");
         if (rol == null) return;
@@ -72,7 +82,9 @@ public class MenuAdmin extends JFrame {
         }
         cargarUsuarios();
     }
-
+    /**
+     * Modifica el usuario seleccionado en la tabla.
+     */
     private void modificarSeleccionado() {
         int fila = tablaUsuarios.getSelectedRow();
         if (fila < 0) { JOptionPane.showMessageDialog(this, "Seleccione un usuario."); return; }
@@ -86,7 +98,9 @@ public class MenuAdmin extends JFrame {
         if (nuevaClave != null) u.setContraseña(nuevaClave);
         cargarUsuarios();
     }
-
+    /**
+     * Elimina el usuario seleccionado y sus datos asociados.
+     */
     private void eliminarSeleccionado() {
         int fila = tablaUsuarios.getSelectedRow();
         if (fila < 0) { JOptionPane.showMessageDialog(this, "Seleccione un usuario."); return; }
@@ -107,15 +121,23 @@ public class MenuAdmin extends JFrame {
         }
         cargarUsuarios();
     }
-
+    /**
+     * Restablece la contraseña del usuario seleccionado a "1234".
+     */
     private void restablecerSeleccionado() {
         int fila = tablaUsuarios.getSelectedRow();
-        if (fila < 0) { JOptionPane.showMessageDialog(this, "Seleccione un usuario."); return; }
+        if (fila < 0) { 
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario."); 
+            return; 
+        }
         String nombre = (String) modelo.getValueAt(fila, 0);
         Usuario u = Sistema.buscarUsuarioPorNombre(nombre);
         if (u != null) {
-            u.setContraseña("1234");
-            JOptionPane.showMessageDialog(this, "Contraseña restablecida a '1234'.");
+            String nuevaClave = JOptionPane.showInputDialog(this, "Ingrese nueva contraseña:");
+            if (nuevaClave != null && !nuevaClave.isEmpty()) {
+                u.setContraseña(nuevaClave);
+                JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.");
+            }
         }
     }
 }
