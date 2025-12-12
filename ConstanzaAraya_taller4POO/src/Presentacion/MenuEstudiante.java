@@ -12,8 +12,6 @@ import java.util.List;
  * las certificaciones disponibles y el progreso.
  */
 public class MenuEstudiante extends JFrame {
-	private static final long serialVersionUID = 1L;
-
     private Estudiante estudiante;
     /**
      * Construye la ventana del menú estudiante con pestañas de información.

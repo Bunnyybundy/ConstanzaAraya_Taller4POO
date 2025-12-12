@@ -11,8 +11,6 @@ import Logica.Sistema;
  * Permite gestionar usuarios: crear, modificar, eliminar y restablecer contraseñas.
  */
 public class MenuAdmin extends JFrame {
-	private static final long serialVersionUID = 1L;
-
     private JTable tablaUsuarios;
     private DefaultTableModel modelo;
     /**
